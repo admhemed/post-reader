@@ -1,0 +1,17 @@
+<h2>Title</h2>
+<p >
+  {{post.title}}   
+  
+  <a href='javascript:void(0);' (click)='toggleFavorite(post)'>
+    <i 
+      class="fa" 
+      [ngClass]="{'fa-heart-o text-muted': !post.favorite, 'fa-heart text-danger': post.favorite}"
+      aria-hidden="true">
+    </i>
+  </a>
+  
+</p>
+<h2>Body</h2>
+<p>
+  {{post.body}}
+</p>

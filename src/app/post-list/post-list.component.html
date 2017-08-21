@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="d-flex justify-content-center align-content-center">
+    <div class="w-50 d-flex p-3 align-content-center flex-column">
+      <h2 class="p-3">Blog List</h2>
+      <div class="list-group p-3" >
+        <a *ngFor="let post of page$ | async "  
+            [routerLink]="['/post-list', post.id]" 
+            class="list-group-item list-group-item-action d-flex justify-content-between"
+            [ngClass]="{active: post.active}">
+          <span class=" my-auto" >
+            {{post.id}} - {{post.title}} 
+          </span>
+          <i 
+            [ngClass]="{'fa-heart-o text-muted': !post.favorite, 'fa-heart text-danger': post.favorite}"
+            class="fa my-auto" 
+            aria-hidden="true">
+          </i>
+      </a>
+      </div>
+      <ngb-pagination  class="p-3" [collectionSize]="collectionSize" (pageChange)="loadPage($event)" [pageSize]="pageSize" [(page)]="pageNumber"
+        [boundaryLinks]="true" [maxSize]="4">
+      </ngb-pagination>
+    </div>
+    <div class="w-50 d-block p-3 mt-5">
+      <post-details [post]="activePost$ | async" (toggleFavoritePost)='toggleFavoritePost($event)' ></post-details>
+    </div>
+  </div>
+</div>
